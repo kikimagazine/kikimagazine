@@ -1,0 +1,11 @@
+Put your picture files in this folder (e.g. drag-race-uk-hero.jpg).
+
+Then in articles.json, reference them like:
+
+  "image": "images/drag-race-uk-hero.jpg"
+
+Recommended size: at least 1200px wide, roughly a 16:10 or 3:2 shape works best
+with the card layout. JPG or PNG both work.
+
+If an article's "image" field is left as an empty string (""), the site shows
+a soft placeholder block using the story's category colour instead of a broken image.
