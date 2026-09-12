@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIKI Magazine — Drag Race news</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #fffbfd;
+    --ink: #1a0e14;
+    --muted: #6e5866;
+    --hot: #ff2e88;
+    --hot-dark: #c2116b;
+    --rule: #f0d9e6;
+    --maxw: 720px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  a { color: var(--hot-dark); text-decoration-thickness: 1.5px; }
+  a:hover { color: var(--hot); }
+  a:focus-visible { outline: 2px solid var(--hot-dark); outline-offset: 2px; }
+
+  .masthead { border-bottom: 3px solid var(--ink); padding: 22px 20px 18px; }
+  .masthead-inner {
+    max-width: 980px; margin: 0 auto; display: flex;
+    align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .site-name {
+    font-family: 'Fraunces', serif; font-weight: 700;
+    font-size: clamp(1.7rem, 4vw, 2.4rem); letter-spacing: -0.01em;
+    margin: 0; color: var(--ink); text-decoration: none;
+    display: inline-flex; align-items: baseline; gap: 2px; cursor: pointer;
+  }
+  .site-name span {
+    color: var(--hot); font-style: italic; font-weight: 500;
+    font-size: 0.4em; letter-spacing: 0.02em; align-self: flex-end;
+    margin-bottom: 0.2em;
+  }
+  .site-tagline { font-size: 0.85rem; color: var(--muted); margin: 0; }
+
+  .page { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+  .article-col { max-width: var(--maxw); margin: 0 auto; }
+
+  .hero { padding: 44px 0 30px; border-bottom: 1px solid var(--rule); }
+  .kicker {
+    display: inline-block; font-size: 0.8rem; font-weight: 600;
+    color: var(--hot-dark); margin-bottom: 10px; padding-bottom: 2px;
+    border-bottom: 2px solid var(--hot);
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif; font-size: clamp(2rem, 5vw, 3.1rem);
+    line-height: 1.08; font-weight: 600; margin: 0 0 14px; max-width: 15ch;
+  }
+  .hero h1 a { color: var(--ink); text-decoration: none; }
+  .standfirst { font-size: 1.15rem; color: var(--muted); max-width: 60ch; margin: 0 0 16px; }
+  .byline { font-size: 0.85rem; color: var(--muted); }
+
+  .story-list { padding: 6px 0 50px; }
+  .story-row {
+    display: flex; gap: 18px; padding: 22px 0; border-bottom: 1px solid var(--rule);
+    align-items: baseline; justify-content: space-between;
+  }
+  .story-row:first-child { padding-top: 26px; }
+  .story-text h2 {
+    font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600;
+    margin: 0 0 6px; line-height: 1.25;
+  }
+  .story-text h2 a { color: var(--ink); text-decoration: none; }
+  .story-text h2 a:hover { color: var(--hot-dark); }
+  .story-text p { margin: 0; color: var(--muted); font-size: 0.95rem; max-width: 56ch; }
+  .story-meta { flex-shrink: 0; font-size: 0.8rem; color: var(--muted); white-space: nowrap; padding-top: 4px; }
+
+  .article-header { padding: 40px 0 24px; }
+  .article-header h1 {
+    font-family: 'Fraunces', serif; font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+    line-height: 1.12; font-weight: 600; margin: 0 0 16px;
+  }
+  .article-body { padding-bottom: 60px; }
+  .article-body p { margin: 0 0 22px; }
+  .article-body h3 { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 600; margin: 40px 0 16px; }
+
+  blockquote {
+    margin: 32px 0; padding: 4px 0 4px 22px; border-left: 3px solid var(--hot);
+    font-family: 'Fraunces', serif; font-size: 1.25rem; font-style: italic; color: var(--ink);
+  }
+  blockquote cite {
+    display: block; margin-top: 8px; font-family: 'Inter', sans-serif;
+    font-style: normal; font-size: 0.85rem; color: var(--muted);
+  }
+
+  .back-link { display: inline-block; margin: 30px 0 0; font-size: 0.9rem; font-weight: 500; }
+
+  footer { border-top: 3px solid var(--ink); padding: 24px 20px 40px; margin-top: 20px; }
+  footer .page { font-size: 0.85rem; color: var(--muted); }
+
+  .empty-state { padding: 60px 0; color: var(--muted); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero { animation: rise 0.5s ease-out; }
+    @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  }
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    .story-row { flex-direction: column; gap: 6px; }
+    .story-meta { padding-top: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a href="#/" class="site-name">KIKI<span>Magazine</span></a>
+    <p class="site-tagline">Pull up a chair — let's have a kiki</p>
+  </div>
+</header>
+
+<main class="page" id="app">
+  <div class="empty-state">Loading…</div>
+</main>
+
+<footer>
+  <div class="page">
+    Fan-run news and commentary. Not affiliated with World of Wonder or the BBC.
+  </div>
+</footer>
+
+<script>
+  let ARTICLES = [];
+
+  async function loadArticles() {
+    const res = await fetch('articles.json');
+    ARTICLES = await res.json();
+    render();
+  }
+
+  function renderBody(blocks) {
+    return blocks.map(block => {
+      if (block.type === 'p') return `<p>${block.text}</p>`;
+      if (block.type === 'h3') return `<h3>${block.text}</h3>`;
+      if (block.type === 'quote') {
+        return `<blockquote>${block.text}<cite>${block.cite}</cite></blockquote>`;
+      }
+      return '';
+    }).join('\n');
+  }
+
+  function renderHome() {
+    if (!ARTICLES.length) {
+      return `<div class="empty-state">No stories yet — add one to articles.json.</div>`;
+    }
+    const [hero, ...rest] = ARTICLES;
+    const heroHtml = `
+      <section class="hero">
+        <span class="kicker">${hero.kicker}</span>
+        <h1><a href="#/${hero.slug}">${hero.title}</a></h1>
+        <p class="standfirst">${hero.standfirst}</p>
+        <p class="byline">Published ${hero.date}</p>
+      </section>`;
+    const restHtml = rest.map(a => `
+      <article class="story-row">
+        <div class="story-text">
+          <h2><a href="#/${a.slug}">${a.title}</a></h2>
+          <p>${a.standfirst}</p>
+        </div>
+        <div class="story-meta">${a.date}</div>
+      </article>`).join('');
+    const listHtml = `
+      <section class="story-list">
+        <article class="story-row">
+          <div class="story-text">
+            <h2><a href="#/${hero.slug}">${hero.title}</a></h2>
+            <p>${hero.standfirst}</p>
+          </div>
+          <div class="story-meta">${hero.date}</div>
+        </article>
+        ${restHtml}
+      </section>`;
+    return heroHtml + listHtml;
+  }
+
+  function renderArticle(slug) {
+    const a = ARTICLES.find(x => x.slug === slug);
+    if (!a) {
+      return `<div class="empty-state">Story not found. <a href="#/">Back to all stories</a></div>`;
+    }
+    return `
+      <div class="article-col">
+        <div class="article-header">
+          <span class="kicker">${a.kicker}</span>
+          <h1>${a.title}</h1>
+          <p class="byline">Published ${a.date}</p>
+        </div>
+        <div class="article-body">
+          ${renderBody(a.body)}
+        </div>
+        <a class="back-link" href="#/">&larr; Back to all stories</a>
+      </div>`;
+  }
+
+  function render() {
+    const app = document.getElementById('app');
+    const hash = location.hash.replace(/^#\/?/, '');
+    document.title = hash
+      ? `${(ARTICLES.find(a => a.slug === hash) || {}).title || 'Not found'} — KIKI Magazine`
+      : 'KIKI Magazine — Drag Race news';
+    app.innerHTML = hash ? renderArticle(hash) : renderHome();
+  }
+
+  window.addEventListener('hashchange', render);
+  loadArticles();
+</script>
+
+</body>
+</html>
