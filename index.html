@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KIKI Magazine — Drag Race news</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap">
+<title>KIKI Magazine</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
 <style>
   :root {
     --bg: #fffbfd;
@@ -12,7 +12,10 @@
     --muted: #6e5866;
     --hot: #ff2e88;
     --hot-dark: #c2116b;
+    --violet: #7a4ea0;
+    --amber: #a66b00;
     --rule: #f0d9e6;
+    --card-bg: #ffffff;
     --maxw: 720px;
   }
   * { box-sizing: border-box; }
@@ -27,62 +30,167 @@
   a { color: var(--hot-dark); text-decoration-thickness: 1.5px; }
   a:hover { color: var(--hot); }
   a:focus-visible { outline: 2px solid var(--hot-dark); outline-offset: 2px; }
+  img { max-width: 100%; display: block; }
 
-  .masthead { border-bottom: 3px solid var(--ink); padding: 22px 20px 18px; }
+  /* ---------- Masthead + nav ---------- */
+
+  .masthead { border-bottom: 3px solid var(--ink); padding: 20px 20px 0; }
   .masthead-inner {
-    max-width: 980px; margin: 0 auto; display: flex;
+    max-width: 1100px; margin: 0 auto; display: flex;
     align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    padding-bottom: 16px;
   }
   .site-name {
     font-family: 'Fraunces', serif; font-weight: 700;
     font-size: clamp(1.7rem, 4vw, 2.4rem); letter-spacing: -0.01em;
     margin: 0; color: var(--ink); text-decoration: none;
-    display: inline-flex; align-items: baseline; gap: 2px; cursor: pointer;
+    display: inline-flex; align-items: flex-end; gap: 6px; cursor: pointer;
   }
   .site-name span {
     color: var(--hot); font-style: italic; font-weight: 500;
-    font-size: 0.4em; letter-spacing: 0.02em; align-self: flex-end;
-    margin-bottom: 0.2em;
+    font-size: 0.4em; letter-spacing: 0.02em; margin-bottom: 0.2em;
   }
   .site-tagline { font-size: 0.85rem; color: var(--muted); margin: 0; }
 
-  .page { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+  .nav {
+    max-width: 1100px; margin: 0 auto; display: flex; gap: 26px;
+    padding: 2px 0 0;
+  }
+  .nav a {
+    display: inline-block; padding: 10px 2px 12px; font-size: 0.92rem; font-weight: 600;
+    color: var(--muted); text-decoration: none; border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+  }
+  .nav a:hover { color: var(--ink); }
+  .nav a.active { color: var(--ink); border-bottom-color: var(--hot); }
+
+  /* ---------- Layout wrappers ---------- */
+
+  .page { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
   .article-col { max-width: var(--maxw); margin: 0 auto; }
 
-  .hero { padding: 44px 0 30px; border-bottom: 1px solid var(--rule); }
-  .kicker {
-    display: inline-block; font-size: 0.8rem; font-weight: 600;
-    color: var(--hot-dark); margin-bottom: 10px; padding-bottom: 2px;
-    border-bottom: 2px solid var(--hot);
+  .section-heading {
+    font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600;
+    margin: 44px 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--rule);
   }
-  .hero h1 {
-    font-family: 'Fraunces', serif; font-size: clamp(2rem, 5vw, 3.1rem);
-    line-height: 1.08; font-weight: 600; margin: 0 0 14px; max-width: 15ch;
-  }
-  .hero h1 a { color: var(--ink); text-decoration: none; }
-  .standfirst { font-size: 1.15rem; color: var(--muted); max-width: 60ch; margin: 0 0 16px; }
-  .byline { font-size: 0.85rem; color: var(--muted); }
 
-  .story-list { padding: 6px 0 50px; }
-  .story-row {
-    display: flex; gap: 18px; padding: 22px 0; border-bottom: 1px solid var(--rule);
-    align-items: baseline; justify-content: space-between;
+  /* ---------- Category color coding ---------- */
+
+  .cat-dragrace { --cat: var(--hot); }
+  .cat-lgbtq { --cat: var(--violet); }
+  .cat-generaldrag { --cat: var(--amber); }
+
+  .kicker {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.01em;
+    color: var(--cat, var(--hot-dark)); margin-bottom: 8px;
   }
-  .story-row:first-child { padding-top: 26px; }
-  .story-text h2 {
-    font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600;
-    margin: 0 0 6px; line-height: 1.25;
+  .kicker::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--cat, var(--hot));
   }
-  .story-text h2 a { color: var(--ink); text-decoration: none; }
-  .story-text h2 a:hover { color: var(--hot-dark); }
-  .story-text p { margin: 0; color: var(--muted); font-size: 0.95rem; max-width: 56ch; }
-  .story-meta { flex-shrink: 0; font-size: 0.8rem; color: var(--muted); white-space: nowrap; padding-top: 4px; }
+
+  /* ---------- Card grid ---------- */
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+    padding: 24px 0 10px;
+  }
+
+  .card {
+    border: 1px solid var(--rule);
+    border-top: 4px solid var(--cat, var(--hot));
+    background: var(--card-bg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .card:hover .card-title { color: var(--hot-dark); }
+
+  .card-media {
+    width: 100%;
+    aspect-ratio: 16/10;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--cat, var(--hot)) 18%, white), color-mix(in srgb, var(--cat, var(--hot)) 6%, white));
+    display: flex; align-items: flex-end;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-media img {
+    width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;
+  }
+  .card-media .placeholder-mark {
+    position: relative; z-index: 1; padding: 14px; font-family: 'Fraunces', serif;
+    font-style: italic; color: color-mix(in srgb, var(--cat, var(--hot)) 55%, var(--ink));
+    font-size: 0.85rem;
+  }
+
+  .card-body { padding: 16px 18px 18px; flex: 1; display: flex; flex-direction: column; }
+
+  .card-title {
+    font-family: 'Fraunces', serif; font-weight: 600; margin: 0 0 8px; line-height: 1.2;
+  }
+  .card-standfirst { color: var(--muted); font-size: 0.92rem; margin: 0; }
+  .card-meta { color: var(--muted); font-size: 0.78rem; margin-top: auto; padding-top: 12px; }
+
+  /* Tier: mega (top story) */
+  .card--mega { grid-column: span 12; flex-direction: row; border-top-width: 6px; }
+  .card--mega .card-media { aspect-ratio: auto; width: 55%; }
+  .card--mega .card-body { width: 45%; padding: 28px 32px; justify-content: center; }
+  .card--mega .card-title { font-size: clamp(1.6rem, 3vw, 2.3rem); }
+  .card--mega .card-standfirst { font-size: 1.05rem; }
+
+  /* Tier: large */
+  .card--large { grid-column: span 6; }
+  .card--large .card-title { font-size: 1.3rem; }
+
+  /* Tier: medium */
+  .card--medium { grid-column: span 4; }
+  .card--medium .card-title { font-size: 1.08rem; }
+  .card--medium .card-standfirst { font-size: 0.88rem; }
+
+  /* Tier: small — compact row, no big media */
+  .story-list-compact { padding: 6px 0 10px; }
+  .row-small {
+    display: flex; gap: 16px; align-items: center;
+    padding: 14px 0; border-bottom: 1px solid var(--rule);
+    text-decoration: none; color: var(--ink);
+  }
+  .row-small:hover .card-title { color: var(--hot-dark); }
+  .row-small .thumb {
+    width: 64px; height: 64px; flex-shrink: 0; overflow: hidden;
+    background: color-mix(in srgb, var(--cat, var(--hot)) 15%, white);
+    border-top: 3px solid var(--cat, var(--hot));
+  }
+  .row-small .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .row-small .card-title { font-size: 1rem; margin: 0 0 4px; }
+  .row-small .kicker { margin-bottom: 4px; }
+
+  @media (max-width: 860px) {
+    .card--mega { flex-direction: column; }
+    .card--mega .card-media, .card--mega .card-body { width: 100%; }
+    .card--large { grid-column: span 12; }
+    .card--medium { grid-column: span 6; }
+  }
+  @media (max-width: 560px) {
+    .card--medium { grid-column: span 12; }
+  }
+
+  /* ---------- Article page ---------- */
 
   .article-header { padding: 40px 0 24px; }
   .article-header h1 {
     font-family: 'Fraunces', serif; font-size: clamp(1.9rem, 4.5vw, 2.6rem);
-    line-height: 1.12; font-weight: 600; margin: 0 0 16px;
+    line-height: 1.12; font-weight: 600; margin: 14px 0 16px;
   }
+  .article-hero-img {
+    width: 100%; max-height: 460px; object-fit: cover; margin: 0 0 8px;
+  }
+  .article-hero-caption { font-size: 0.8rem; color: var(--muted); margin: 0 0 20px; }
+  .byline { font-size: 0.85rem; color: var(--muted); }
   .article-body { padding-bottom: 60px; }
   .article-body p { margin: 0 0 22px; }
   .article-body h3 { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 600; margin: 40px 0 16px; }
@@ -98,19 +206,14 @@
 
   .back-link { display: inline-block; margin: 30px 0 0; font-size: 0.9rem; font-weight: 500; }
 
-  footer { border-top: 3px solid var(--ink); padding: 24px 20px 40px; margin-top: 20px; }
+  footer { border-top: 3px solid var(--ink); padding: 24px 20px 40px; margin-top: 40px; }
   footer .page { font-size: 0.85rem; color: var(--muted); }
 
   .empty-state { padding: 60px 0; color: var(--muted); }
 
   @media (prefers-reduced-motion: no-preference) {
-    .hero { animation: rise 0.5s ease-out; }
+    .card--mega { animation: rise 0.5s ease-out; }
     @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-  }
-  @media (max-width: 600px) {
-    body { font-size: 16px; }
-    .story-row { flex-direction: column; gap: 6px; }
-    .story-meta { padding-top: 0; }
   }
 </style>
 </head>
@@ -121,6 +224,12 @@
     <a href="#/" class="site-name">KIKI<span>Magazine</span></a>
     <p class="site-tagline">Pull up a chair — let's have a kiki</p>
   </div>
+  <nav class="nav" id="nav">
+    <a href="#/" data-route="">Home</a>
+    <a href="#/category/drag-race" data-route="category/drag-race">Drag Race</a>
+    <a href="#/category/lgbtq" data-route="category/lgbtq">LGBTQ</a>
+    <a href="#/category/general-drag" data-route="category/general-drag">General Drag</a>
+  </nav>
 </header>
 
 <main class="page" id="app">
@@ -136,55 +245,110 @@
 <script>
   let ARTICLES = [];
 
+  const CATEGORIES = {
+    "drag-race": { label: "Drag Race", cls: "cat-dragrace" },
+    "lgbtq": { label: "LGBTQ", cls: "cat-lgbtq" },
+    "general-drag": { label: "General Drag", cls: "cat-generaldrag" }
+  };
+
   async function loadArticles() {
     const res = await fetch('articles.json');
     ARTICLES = await res.json();
     render();
   }
 
-  function renderBody(blocks) {
-    return blocks.map(block => {
-      if (block.type === 'p') return `<p>${block.text}</p>`;
-      if (block.type === 'h3') return `<h3>${block.text}</h3>`;
-      if (block.type === 'quote') {
-        return `<blockquote>${block.text}<cite>${block.cite}</cite></blockquote>`;
-      }
-      return '';
-    }).join('\n');
+  function catInfo(slug) {
+    return CATEGORIES[slug] || { label: slug, cls: "" };
+  }
+
+  function tierFor(rating) {
+    if (rating >= 9) return 'mega';
+    if (rating >= 7) return 'large';
+    if (rating >= 4) return 'medium';
+    return 'small';
+  }
+
+  function mediaHtml(article) {
+    if (article.image) {
+      return `<div class="card-media"><img src="${article.image}" alt=""></div>`;
+    }
+    return `<div class="card-media"><span class="placeholder-mark">${article.category ? catInfo(article.category).label : 'KIKI'}</span></div>`;
+  }
+
+  function cardHtml(article, tier) {
+    const cat = catInfo(article.category);
+    return `
+      <a class="card ${cat.cls} card--${tier}" href="#/story/${article.slug}">
+        ${mediaHtml(article)}
+        <div class="card-body">
+          <span class="kicker">${cat.label}</span>
+          <h2 class="card-title">${article.title}</h2>
+          ${tier !== 'small' ? `<p class="card-standfirst">${article.standfirst}</p>` : ''}
+          <p class="card-meta">${article.date}</p>
+        </div>
+      </a>`;
+  }
+
+  function smallRowHtml(article) {
+    const cat = catInfo(article.category);
+    const thumb = article.image
+      ? `<div class="thumb ${cat.cls}"><img src="${article.image}" alt=""></div>`
+      : `<div class="thumb ${cat.cls}"></div>`;
+    return `
+      <a class="row-small ${cat.cls}" href="#/story/${article.slug}">
+        ${thumb}
+        <div>
+          <span class="kicker">${cat.label}</span>
+          <h2 class="card-title">${article.title}</h2>
+        </div>
+      </a>`;
+  }
+
+  function renderGrid(list) {
+    const sorted = [...list].sort((a, b) => (b.rating || 0) - (a.rating || 0));
+    const mega = sorted.filter(a => tierFor(a.rating) === 'mega');
+    const large = sorted.filter(a => tierFor(a.rating) === 'large');
+    const medium = sorted.filter(a => tierFor(a.rating) === 'medium');
+    const small = sorted.filter(a => tierFor(a.rating) === 'small');
+
+    let html = '<div class="story-grid">';
+    mega.forEach(a => { html += cardHtml(a, 'mega'); });
+    large.forEach(a => { html += cardHtml(a, 'large'); });
+    medium.forEach(a => { html += cardHtml(a, 'medium'); });
+    html += '</div>';
+
+    if (small.length) {
+      html += '<div class="story-list-compact">';
+      small.forEach(a => { html += smallRowHtml(a); });
+      html += '</div>';
+    }
+    return html;
   }
 
   function renderHome() {
     if (!ARTICLES.length) {
       return `<div class="empty-state">No stories yet — add one to articles.json.</div>`;
     }
-    const [hero, ...rest] = ARTICLES;
-    const heroHtml = `
-      <section class="hero">
-        <span class="kicker">${hero.kicker}</span>
-        <h1><a href="#/${hero.slug}">${hero.title}</a></h1>
-        <p class="standfirst">${hero.standfirst}</p>
-        <p class="byline">Published ${hero.date}</p>
-      </section>`;
-    const restHtml = rest.map(a => `
-      <article class="story-row">
-        <div class="story-text">
-          <h2><a href="#/${a.slug}">${a.title}</a></h2>
-          <p>${a.standfirst}</p>
-        </div>
-        <div class="story-meta">${a.date}</div>
-      </article>`).join('');
-    const listHtml = `
-      <section class="story-list">
-        <article class="story-row">
-          <div class="story-text">
-            <h2><a href="#/${hero.slug}">${hero.title}</a></h2>
-            <p>${hero.standfirst}</p>
-          </div>
-          <div class="story-meta">${hero.date}</div>
-        </article>
-        ${restHtml}
-      </section>`;
-    return heroHtml + listHtml;
+    return renderGrid(ARTICLES);
+  }
+
+  function renderCategory(catSlug) {
+    const cat = catInfo(catSlug);
+    const list = ARTICLES.filter(a => a.category === catSlug);
+    const heading = `<h1 class="section-heading">${cat.label}</h1>`;
+    if (!list.length) {
+      return heading + `<div class="empty-state">No stories in ${cat.label} yet.</div>`;
+    }
+    return heading + renderGrid(list);
+  }
+
+  function renderBody(blocks) {
+    return blocks.map(block => {
+      if (block.type === 'p') return `<p>${block.text}</p>`;
+      if (block.type === 'h3') return `<h3>${block.text}</h3>`;
+      if (block.type === 'quote') return `<blockquote>${block.text}<cite>${block.cite}</cite></blockquote>`;
+      return '';
+    }).join('\n');
   }
 
   function renderArticle(slug) {
@@ -192,10 +356,15 @@
     if (!a) {
       return `<div class="empty-state">Story not found. <a href="#/">Back to all stories</a></div>`;
     }
+    const cat = catInfo(a.category);
+    const heroImg = a.image
+      ? `<img class="article-hero-img" src="${a.image}" alt="">`
+      : '';
     return `
       <div class="article-col">
-        <div class="article-header">
-          <span class="kicker">${a.kicker}</span>
+        ${heroImg}
+        <div class="article-header ${cat.cls}">
+          <span class="kicker">${cat.label}</span>
           <h1>${a.title}</h1>
           <p class="byline">Published ${a.date}</p>
         </div>
@@ -206,13 +375,33 @@
       </div>`;
   }
 
+  function setActiveNav(route) {
+    document.querySelectorAll('#nav a').forEach(link => {
+      link.classList.toggle('active', link.dataset.route === route);
+    });
+  }
+
   function render() {
     const app = document.getElementById('app');
     const hash = location.hash.replace(/^#\/?/, '');
-    document.title = hash
-      ? `${(ARTICLES.find(a => a.slug === hash) || {}).title || 'Not found'} — KIKI Magazine`
-      : 'KIKI Magazine — Drag Race news';
-    app.innerHTML = hash ? renderArticle(hash) : renderHome();
+
+    if (hash.startsWith('story/')) {
+      const slug = hash.slice('story/'.length);
+      app.innerHTML = renderArticle(slug);
+      const a = ARTICLES.find(x => x.slug === slug);
+      document.title = a ? `${a.title} — KIKI Magazine` : 'Not found — KIKI Magazine';
+      setActiveNav('');
+    } else if (hash.startsWith('category/')) {
+      const catSlug = hash.slice('category/'.length);
+      app.innerHTML = renderCategory(catSlug);
+      document.title = `${catInfo(catSlug).label} — KIKI Magazine`;
+      setActiveNav(hash);
+    } else {
+      app.innerHTML = renderHome();
+      document.title = 'KIKI Magazine — Drag Race, LGBTQ & drag news';
+      setActiveNav('');
+    }
+    window.scrollTo(0, 0);
   }
 
   window.addEventListener('hashchange', render);
