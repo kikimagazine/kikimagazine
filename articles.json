@@ -1,7 +1,9 @@
 [
   {
     "slug": "major-shakeup-drag-race-uk",
-    "kicker": "Drag Race UK",
+    "category": "drag-race",
+    "rating": 10,
+    "image": "",
     "title": "Major shakeup for RuPaul's Drag Race UK",
     "standfirst": "The BBC has dropped Drag Race UK after eight seasons & 3 spinoff seasons - here's what to expect, and what a first-ever UK All Stars could look like.",
     "date": "12 September 2026",
@@ -17,6 +19,30 @@
       { "type": "p", "text": "We can also expect changes to the Drag Race UK set, possibly including a new 'Werk Room' and a brand new main stage. Given World Of Wonder has always been responsible for the show's set design, it wouldn't be a huge surprise to see a new set for the first edition of All Stars. It's possible that World Of Wonder wants to highlight a 'new era' for Drag Race UK and the transition from the BBC and WOW Presents Plus." },
       { "type": "h3", "text": "So, is this the future of Drag Race UK?" },
       { "type": "p", "text": "It is entirely possible for WOW to keep hold of the show, as having full control is convenient for them. But a shift to a new broadcaster such as ITV or Channel 4 isn't off the table, as UK vs The World season 1 champion Blu Hydrangea hoped for in a social media post. Whatever happens next, RuPaul's Drag Race UK's biggest shakeup in herstory is officially under way." }
+    ]
+  },
+  {
+    "slug": "example-lgbtq-story",
+    "category": "lgbtq",
+    "rating": 6,
+    "image": "",
+    "title": "[Example] Replace this with a real LGBTQ story",
+    "standfirst": "This is a placeholder so you can see how a medium-sized card looks. Delete or edit this entry in articles.json.",
+    "date": "1 January 2026",
+    "body": [
+      { "type": "p", "text": "Replace this paragraph with your real story content." }
+    ]
+  },
+  {
+    "slug": "example-general-drag-story",
+    "category": "general-drag",
+    "rating": 3,
+    "image": "",
+    "title": "[Example] Replace this with a General Drag story",
+    "standfirst": "This is a placeholder showing the smaller, compact list style used for lower-rated stories.",
+    "date": "1 January 2026",
+    "body": [
+      { "type": "p", "text": "Replace this paragraph with your real story content." }
     ]
   }
 ]
