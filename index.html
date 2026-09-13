@@ -4,19 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KIKI Magazine</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
 <style>
   :root {
-    --bg: #fffbfd;
-    --ink: #1a0e14;
-    --muted: #6e5866;
+    --ink: #17181a;
+    --bg: #ffffff;
+    --bg-alt: #f6f6f6;
     --hot: #ff2e88;
-    --hot-dark: #c2116b;
     --violet: #7a4ea0;
     --amber: #a66b00;
-    --rule: #f0d9e6;
-    --card-bg: #ffffff;
-    --maxw: 720px;
+    --muted: #5a5a5a;
+    --rule: #e2e2e2;
+    --maxw: 700px;
   }
   * { box-sizing: border-box; }
   body {
@@ -24,205 +23,169 @@
     background: var(--bg);
     color: var(--ink);
     font-family: 'Inter', system-ui, sans-serif;
-    font-size: 17px;
-    line-height: 1.55;
+    font-size: 16px;
+    line-height: 1.5;
   }
-  a { color: var(--hot-dark); text-decoration-thickness: 1.5px; }
-  a:hover { color: var(--hot); }
-  a:focus-visible { outline: 2px solid var(--hot-dark); outline-offset: 2px; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
   img { max-width: 100%; display: block; }
 
-  /* ---------- Masthead + nav ---------- */
+  /* ---------- Header ---------- */
 
-  .masthead { border-bottom: 3px solid var(--ink); padding: 20px 20px 0; }
-  .masthead-inner {
-    max-width: 1100px; margin: 0 auto; display: flex;
-    align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;
-    padding-bottom: 16px;
+  .topbar { background: var(--ink); }
+  .topbar-inner {
+    max-width: 1180px; margin: 0 auto; padding: 6px 20px;
+    font-size: 0.78rem; color: rgba(255,255,255,0.75); font-weight: 500;
   }
-  .site-name {
-    font-family: 'Fraunces', serif; font-weight: 700;
-    font-size: clamp(1.7rem, 4vw, 2.4rem); letter-spacing: -0.01em;
-    margin: 0; color: var(--ink); text-decoration: none;
-    display: inline-flex; align-items: flex-end; gap: 6px; cursor: pointer;
+
+  .site-header { background: var(--bg); border-bottom: 1px solid var(--rule); }
+  .header-inner {
+    max-width: 1180px; margin: 0 auto; padding: 16px 20px 0;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
   }
-  .site-name span {
-    color: var(--hot); font-style: italic; font-weight: 500;
-    font-size: 0.4em; letter-spacing: 0.02em; margin-bottom: 0.2em;
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .brand-block {
+    background: var(--hot); color: #fff; font-weight: 800; font-size: 1.15rem;
+    letter-spacing: 0.01em; padding: 5px 9px; line-height: 1;
   }
-  .site-tagline { font-size: 0.85rem; color: var(--muted); margin: 0; }
+  .brand-word {
+    font-weight: 800; font-size: 1.1rem; letter-spacing: 0.02em; color: var(--ink);
+  }
 
   .nav {
-    max-width: 1100px; margin: 0 auto; display: flex; gap: 26px;
-    padding: 2px 0 0;
+    max-width: 1180px; margin: 0 auto; padding: 0 20px;
+    display: flex; gap: 4px; flex-wrap: wrap;
   }
   .nav a {
-    display: inline-block; padding: 10px 2px 12px; font-size: 0.92rem; font-weight: 600;
-    color: var(--muted); text-decoration: none; border-bottom: 3px solid transparent;
-    margin-bottom: -3px;
+    display: inline-block; padding: 12px 14px; font-size: 0.92rem; font-weight: 700;
+    color: var(--ink); text-decoration: none; border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
   }
-  .nav a:hover { color: var(--ink); }
-  .nav a.active { color: var(--ink); border-bottom-color: var(--hot); }
+  .nav a:hover { text-decoration: none; background: var(--bg-alt); }
+  .nav a.active { border-bottom-color: var(--hot); }
 
   /* ---------- Layout wrappers ---------- */
 
-  .page { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .page { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
   .article-col { max-width: var(--maxw); margin: 0 auto; }
 
   .section-heading {
-    font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600;
-    margin: 44px 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--rule);
+    font-size: 1.3rem; font-weight: 800; margin: 40px 0 16px;
+    padding-bottom: 10px; border-bottom: 4px solid var(--ink);
   }
 
-  /* ---------- Category color coding ---------- */
+  /* ---------- Category colours ---------- */
 
   .cat-dragrace { --cat: var(--hot); }
   .cat-lgbtq { --cat: var(--violet); }
   .cat-generaldrag { --cat: var(--amber); }
 
-  .kicker {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.01em;
-    color: var(--cat, var(--hot-dark)); margin-bottom: 8px;
-  }
-  .kicker::before {
-    content: ""; width: 8px; height: 8px; border-radius: 50%;
-    background: var(--cat, var(--hot));
+  .tag {
+    display: inline-block; font-size: 0.72rem; font-weight: 800;
+    letter-spacing: 0.03em; text-transform: uppercase;
+    color: var(--cat, var(--hot)); margin-bottom: 6px;
   }
 
-  /* ---------- Card grid ---------- */
+  /* ---------- Story grid ---------- */
 
   .story-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 20px;
-    padding: 24px 0 10px;
+    display: grid; grid-template-columns: repeat(12, 1fr);
+    gap: 0; border-top: 1px solid var(--rule);
   }
 
   .card {
-    border: 1px solid var(--rule);
-    border-top: 4px solid var(--cat, var(--hot));
-    background: var(--card-bg);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    text-decoration: none;
-    color: var(--ink);
+    display: flex; flex-direction: column; text-decoration: none; color: var(--ink);
+    padding: 20px; border-bottom: 1px solid var(--rule); border-right: 1px solid var(--rule);
   }
-  .card:hover .card-title { color: var(--hot-dark); }
-
-  .card-media {
-    width: 100%;
-    aspect-ratio: 16/10;
-    background: linear-gradient(135deg, color-mix(in srgb, var(--cat, var(--hot)) 18%, white), color-mix(in srgb, var(--cat, var(--hot)) 6%, white));
-    display: flex; align-items: flex-end;
-    position: relative;
-    overflow: hidden;
-  }
-  .card-media img {
-    width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;
-  }
-  .card-media .placeholder-mark {
-    position: relative; z-index: 1; padding: 14px; font-family: 'Fraunces', serif;
-    font-style: italic; color: color-mix(in srgb, var(--cat, var(--hot)) 55%, var(--ink));
-    font-size: 0.85rem;
+  .card:hover .card-title { text-decoration: underline; }
+  .card-media { width: 100%; aspect-ratio: 16/9; overflow: hidden; margin-bottom: 12px; background: var(--bg-alt); }
+  .card-media img { width: 100%; height: 100%; object-fit: cover; }
+  .card-media.no-image { display: flex; align-items: center; justify-content: center; }
+  .card-media.no-image::after {
+    content: "KIKI"; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.05em;
+    color: color-mix(in srgb, var(--cat, var(--hot)) 55%, var(--muted));
   }
 
-  .card-body { padding: 16px 18px 18px; flex: 1; display: flex; flex-direction: column; }
+  .card-title { font-weight: 800; line-height: 1.25; margin: 0 0 8px; }
+  .card-standfirst { color: var(--muted); font-size: 0.92rem; margin: 0 0 8px; }
+  .card-meta { color: var(--muted); font-size: 0.78rem; margin-top: auto; }
 
-  .card-title {
-    font-family: 'Fraunces', serif; font-weight: 600; margin: 0 0 8px; line-height: 1.2;
-  }
-  .card-standfirst { color: var(--muted); font-size: 0.92rem; margin: 0; }
-  .card-meta { color: var(--muted); font-size: 0.78rem; margin-top: auto; padding-top: 12px; }
+  .card--mega { grid-column: span 12; padding: 28px 20px; }
+  .card--mega .card-media { aspect-ratio: 21/9; }
+  .card--mega .card-title { font-size: clamp(1.7rem, 3.4vw, 2.5rem); max-width: 26ch; }
+  .card--mega .card-standfirst { font-size: 1.08rem; max-width: 60ch; }
 
-  /* Tier: mega (top story) */
-  .card--mega { grid-column: span 12; flex-direction: row; border-top-width: 6px; }
-  .card--mega .card-media { aspect-ratio: auto; width: 55%; }
-  .card--mega .card-body { width: 45%; padding: 28px 32px; justify-content: center; }
-  .card--mega .card-title { font-size: clamp(1.6rem, 3vw, 2.3rem); }
-  .card--mega .card-standfirst { font-size: 1.05rem; }
-
-  /* Tier: large */
   .card--large { grid-column: span 6; }
-  .card--large .card-title { font-size: 1.3rem; }
+  .card--large .card-title { font-size: 1.25rem; }
 
-  /* Tier: medium */
   .card--medium { grid-column: span 4; }
-  .card--medium .card-title { font-size: 1.08rem; }
-  .card--medium .card-standfirst { font-size: 0.88rem; }
+  .card--medium .card-title { font-size: 1.05rem; }
+  .card--medium .card-standfirst { display: none; }
 
-  /* Tier: small — compact row, no big media */
-  .story-list-compact { padding: 6px 0 10px; }
-  .row-small {
-    display: flex; gap: 16px; align-items: center;
-    padding: 14px 0; border-bottom: 1px solid var(--rule);
-    text-decoration: none; color: var(--ink);
+  /* Small tier: compact row, no big media */
+  .card--small {
+    grid-column: span 12; flex-direction: row; align-items: center; gap: 14px;
+    padding: 12px 20px;
   }
-  .row-small:hover .card-title { color: var(--hot-dark); }
-  .row-small .thumb {
-    width: 64px; height: 64px; flex-shrink: 0; overflow: hidden;
-    background: color-mix(in srgb, var(--cat, var(--hot)) 15%, white);
-    border-top: 3px solid var(--cat, var(--hot));
-  }
-  .row-small .thumb img { width: 100%; height: 100%; object-fit: cover; }
-  .row-small .card-title { font-size: 1rem; margin: 0 0 4px; }
-  .row-small .kicker { margin-bottom: 4px; }
+  .card--small .card-media { width: 84px; aspect-ratio: 1/1; margin-bottom: 0; flex-shrink: 0; }
+  .card--small .card-media.no-image::after { font-size: 0.55rem; }
+  .card--small .card-title { font-size: 0.98rem; margin-bottom: 2px; }
+  .card--small .tag { margin-bottom: 3px; }
 
-  @media (max-width: 860px) {
-    .card--mega { flex-direction: column; }
-    .card--mega .card-media, .card--mega .card-body { width: 100%; }
-    .card--large { grid-column: span 12; }
+  @media (max-width: 900px) {
+    .card--large { grid-column: span 6; }
     .card--medium { grid-column: span 6; }
   }
-  @media (max-width: 560px) {
+  @media (max-width: 620px) {
+    .card--large { grid-column: span 12; }
     .card--medium { grid-column: span 12; }
   }
 
   /* ---------- Article page ---------- */
 
-  .article-header { padding: 40px 0 24px; }
+  .article-header { padding: 32px 0 20px; }
   .article-header h1 {
-    font-family: 'Fraunces', serif; font-size: clamp(1.9rem, 4.5vw, 2.6rem);
-    line-height: 1.12; font-weight: 600; margin: 14px 0 16px;
+    font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 800; line-height: 1.18; margin: 8px 0 14px;
   }
-  .article-hero-img {
-    width: 100%; max-height: 460px; object-fit: cover; margin: 0 0 8px;
-  }
-  .article-hero-caption { font-size: 0.8rem; color: var(--muted); margin: 0 0 20px; }
-  .byline { font-size: 0.85rem; color: var(--muted); }
-  .article-body { padding-bottom: 60px; }
+  .article-hero-img { width: 100%; max-height: 440px; object-fit: cover; margin: 0 0 8px; }
+  .article-hero-caption { font-size: 0.78rem; color: var(--muted); margin: 0 0 20px; }
+  .byline { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
+  .article-body { padding-bottom: 60px; font-size: 1.06rem; }
   .article-body p { margin: 0 0 22px; }
-  .article-body h3 { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 600; margin: 40px 0 16px; }
+  .article-body h3 { font-size: 1.3rem; font-weight: 800; margin: 38px 0 14px; }
 
   blockquote {
-    margin: 32px 0; padding: 4px 0 4px 22px; border-left: 3px solid var(--hot);
-    font-family: 'Fraunces', serif; font-size: 1.25rem; font-style: italic; color: var(--ink);
+    margin: 30px 0; padding: 4px 0 4px 20px; border-left: 4px solid var(--hot);
+    font-size: 1.2rem; font-weight: 600; color: var(--ink);
   }
   blockquote cite {
-    display: block; margin-top: 8px; font-family: 'Inter', sans-serif;
-    font-style: normal; font-size: 0.85rem; color: var(--muted);
+    display: block; margin-top: 8px; font-weight: 500;
+    font-size: 0.85rem; color: var(--muted);
   }
 
-  .back-link { display: inline-block; margin: 30px 0 0; font-size: 0.9rem; font-weight: 500; }
+  .back-link {
+    display: inline-block; margin: 30px 0 0; font-size: 0.9rem; font-weight: 700;
+    border-bottom: 2px solid var(--hot); padding-bottom: 2px;
+  }
+  .back-link:hover { text-decoration: none; }
 
-  footer { border-top: 3px solid var(--ink); padding: 24px 20px 40px; margin-top: 40px; }
+  footer { border-top: 1px solid var(--rule); background: var(--bg-alt); padding: 24px 20px 40px; margin-top: 20px; }
   footer .page { font-size: 0.85rem; color: var(--muted); }
 
   .empty-state { padding: 60px 0; color: var(--muted); }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .card--mega { animation: rise 0.5s ease-out; }
-    @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-  }
 </style>
 </head>
 <body>
 
-<header class="masthead">
-  <div class="masthead-inner">
-    <a href="#/" class="site-name">KIKI<span>Magazine</span></a>
-    <p class="site-tagline">Pull up a chair — let's have a kiki</p>
+<div class="topbar"><div class="topbar-inner">Fan-run drag news &amp; commentary</div></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#/" class="brand">
+      <span class="brand-block">KIKI</span>
+      <span class="brand-word">Magazine</span>
+    </a>
   </div>
   <nav class="nav" id="nav">
     <a href="#/" data-route="">Home</a>
@@ -268,67 +231,36 @@
     return 'small';
   }
 
-  function mediaHtml(article) {
+  function mediaHtml(article, cat) {
     if (article.image) {
       return `<div class="card-media"><img src="${article.image}" alt=""></div>`;
     }
-    return `<div class="card-media"><span class="placeholder-mark">${article.category ? catInfo(article.category).label : 'KIKI'}</span></div>`;
+    return `<div class="card-media no-image ${cat.cls}"></div>`;
   }
 
-  function cardHtml(article, tier) {
+  function cardHtml(article) {
+    const tier = tierFor(article.rating);
     const cat = catInfo(article.category);
+    const showStandfirst = tier === 'mega' || tier === 'large';
     return `
       <a class="card ${cat.cls} card--${tier}" href="#/story/${article.slug}">
-        ${mediaHtml(article)}
-        <div class="card-body">
-          <span class="kicker">${cat.label}</span>
+        ${mediaHtml(article, cat)}
+        <div class="card-text">
+          <span class="tag">${cat.label}</span>
           <h2 class="card-title">${article.title}</h2>
-          ${tier !== 'small' ? `<p class="card-standfirst">${article.standfirst}</p>` : ''}
+          ${showStandfirst ? `<p class="card-standfirst">${article.standfirst}</p>` : ''}
           <p class="card-meta">${article.date}</p>
-        </div>
-      </a>`;
-  }
-
-  function smallRowHtml(article) {
-    const cat = catInfo(article.category);
-    const thumb = article.image
-      ? `<div class="thumb ${cat.cls}"><img src="${article.image}" alt=""></div>`
-      : `<div class="thumb ${cat.cls}"></div>`;
-    return `
-      <a class="row-small ${cat.cls}" href="#/story/${article.slug}">
-        ${thumb}
-        <div>
-          <span class="kicker">${cat.label}</span>
-          <h2 class="card-title">${article.title}</h2>
         </div>
       </a>`;
   }
 
   function renderGrid(list) {
     const sorted = [...list].sort((a, b) => (b.rating || 0) - (a.rating || 0));
-    const mega = sorted.filter(a => tierFor(a.rating) === 'mega');
-    const large = sorted.filter(a => tierFor(a.rating) === 'large');
-    const medium = sorted.filter(a => tierFor(a.rating) === 'medium');
-    const small = sorted.filter(a => tierFor(a.rating) === 'small');
-
-    let html = '<div class="story-grid">';
-    mega.forEach(a => { html += cardHtml(a, 'mega'); });
-    large.forEach(a => { html += cardHtml(a, 'large'); });
-    medium.forEach(a => { html += cardHtml(a, 'medium'); });
-    html += '</div>';
-
-    if (small.length) {
-      html += '<div class="story-list-compact">';
-      small.forEach(a => { html += smallRowHtml(a); });
-      html += '</div>';
-    }
-    return html;
+    return `<div class="story-grid">${sorted.map(cardHtml).join('')}</div>`;
   }
 
   function renderHome() {
-    if (!ARTICLES.length) {
-      return `<div class="empty-state">No stories yet — add one to articles.json.</div>`;
-    }
+    if (!ARTICLES.length) return `<div class="empty-state">No stories yet — add one to articles.json.</div>`;
     return renderGrid(ARTICLES);
   }
 
@@ -336,9 +268,7 @@
     const cat = catInfo(catSlug);
     const list = ARTICLES.filter(a => a.category === catSlug);
     const heading = `<h1 class="section-heading">${cat.label}</h1>`;
-    if (!list.length) {
-      return heading + `<div class="empty-state">No stories in ${cat.label} yet.</div>`;
-    }
+    if (!list.length) return heading + `<div class="empty-state">No stories in ${cat.label} yet.</div>`;
     return heading + renderGrid(list);
   }
 
@@ -353,18 +283,14 @@
 
   function renderArticle(slug) {
     const a = ARTICLES.find(x => x.slug === slug);
-    if (!a) {
-      return `<div class="empty-state">Story not found. <a href="#/">Back to all stories</a></div>`;
-    }
+    if (!a) return `<div class="empty-state">Story not found. <a href="#/">Back to all stories</a></div>`;
     const cat = catInfo(a.category);
-    const heroImg = a.image
-      ? `<img class="article-hero-img" src="${a.image}" alt="">`
-      : '';
+    const heroImg = a.image ? `<img class="article-hero-img" src="${a.image}" alt="">` : '';
     return `
       <div class="article-col">
         ${heroImg}
         <div class="article-header ${cat.cls}">
-          <span class="kicker">${cat.label}</span>
+          <span class="tag">${cat.label}</span>
           <h1>${a.title}</h1>
           <p class="byline">Published ${a.date}</p>
         </div>
