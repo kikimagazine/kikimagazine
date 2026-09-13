@@ -34,15 +34,5 @@
     ]
   },
   {
-    "slug": "example-general-drag-story",
-    "category": "general-drag",
-    "rating": 3,
-    "image": "",
-    "title": "[Example] Replace this with a General Drag story",
-    "standfirst": "This is a placeholder showing the smaller, compact list style used for lower-rated stories.",
-    "date": "1 January 2026",
-    "body": [
-      { "type": "p", "text": "Replace this paragraph with your real story content." }
-    ]
   }
 ]
